@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contraco - Ветераны цифровой трансформации с 1998 года</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-868WGCC45D', {
+            page_title: 'contraco - Ветераны цифровой трансформации с 1998 года',
+            page_location: window.location.href
+        });
+    </script>
+    
+    <!-- hreflang for International SEO -->
+    <link rel="alternate" hreflang="en" href="https://contraco.net/" />
+    <link rel="alternate" hreflang="de" href="https://contraco.de/" />
+    <link rel="alternate" hreflang="ru" href="https://contraco.ru/" />
+    <link rel="alternate" hreflang="ko" href="https://contraco.co.kr/" />
+    <link rel="alternate" hreflang="x-default" href="https://contraco.net/" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#e62d00">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="contraco - Ветераны цифровой трансформации с 27+ летним опытом. Стратегическая ясность, технологический интеллект и психологическая глубина для российского рынка.">
+    <meta name="keywords" content="цифровая трансформация, консалтинг трансформации, управление изменениями, организационные изменения, contraco россия">
+    <meta name="author" content="contraco">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://contraco.ru/">
+    <meta property="og:title" content="contraco - Ветераны цифровой трансформации с 1998 года">
+    <meta property="og:description" content="Ветераны трансформации для российского рынка. 27+ лет опыта в цифровом совершенстве.">
+    
+    <style>
+        /* CSS Variables - Standard across all contraco pages */
+        :root {
+            /* Brand Colors */
+            --primary-red: #e62d00;
+            --deep-charcoal: #2C2C2C;
+            --warm-white: #F8F6F3;
+            --warm-gray-light: #E5E2DD;
+            --warm-gray-medium: #A8A5A0;
+            --warm-gray-dark: #6B6B6B;
+            
+            /* Typography */
+            --font-serif: 'Crimson Text', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Layout */
+            --container-max: 1200px;
+            --section-padding: 100px 0;
+            
+            /* Transitions */
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.5s ease;
+            
+            /* Shadows */
+            --shadow-small: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-large: 0 15px 50px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--deep-charcoal);
+            background-color: var(--warm-white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation - Same as German site */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 246, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            margin-left: 60px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-fallback {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            letter-spacing: -0.02em;
+            font-family: var(--font-serif);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .logo:hover .logo-fallback {
+            transform: scale(1.05);
+        }
+
+        .logo.logo-failed img {
+            display: none;
+        }
+
+        .logo.logo-failed .logo-fallback {
+            display: block;
+        }
+
+        .nav-menu {
+            margin-right: 60px;
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--deep-charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary-red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid var(--warm-gray-light);
+        }
+
+        .lang-link {
+            text-decoration: none;
+            color: var(--warm-gray-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-link:hover {
+            color: var(--primary-red);
+            background: rgba(230, 45, 0, 0.1);
+        }
+
+        .lang-link.active {
+            color: white;
+            background: var(--primary-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-charcoal) 0%, #1a1a1a 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--warm-gray-light);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            background: #d63e20;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 45, 0, 0.3);
+        }
+
+        /* Services Preview */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--deep-charcoal);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--warm-gray-dark);
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--warm-white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-red);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--deep-charcoal);
+        }
+
+        .service-description {
+            color: var(--warm-gray-dark);
+            line-height: 1.6;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: var(--primary-red);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--primary-red);
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: var(--warm-gray-light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--warm-gray-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-info strong {
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .logo {
+                margin-left: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                margin-left: 10px;
+                padding-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="https://contraco.ru/" class="logo" id="site-logo">
+                <img src="https://contraco.net/Logo_rectangle.svg" 
+                     alt="contraco" 
+                     onerror="this.parentElement.classList.add('logo-failed');">
+                <span class="logo-fallback">contraco</span>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <ul class="nav-menu">
+                    <li><a href="https://contraco.ru/" class="nav-link active">Главная</a></li>
+                    <li><a href="/services" class="nav-link">Услуги</a></li>
+                    <li><a href="/metodika" class="nav-link">Методика</a></li>
+                    <li><a href="/insights" class="nav-link">Insights</a></li>
+                    <li><a href="/o-nas" class="nav-link">О нас</a></li>
+                    <li><a href="/kontakt" class="nav-link">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <a href="https://contraco.net" class="lang-link">EN</a>
+                    <a href="https://contraco.de" class="lang-link">DE</a>
+                    <a href="https://contraco.ru" class="lang-link active">RU</a>
+                    <a href="https://contraco.co.kr" class="lang-link">KO</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Ветераны цифровой трансформации с 1998 года</h1>
+                <p class="hero-subtitle">
+                    27+ лет экспертизы в стратегической ясности, технологическом интеллекте и психологической глубине для российского рынка.
+                </p>
+                <a href="/kontakt" class="cta-button">
+                    Начать трансформацию
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="section-title">Наша экспертиза</h2>
+                <p class="section-subtitle">
+                    Мы сочетаем проверенные стратегии трансформации с пониманием российского бизнес-контекста и международным опытом.
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-title">Стратегическая трансформация</h3>
+                    <p class="service-description">
+                        Разработка стратегий трансформации, которые объединяют стратегические цели с человеческой психологией и технологическими возможностями.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-title">Интеграция ИИ</h3>
+                    <p class="service-description">
+                        Успешное внедрение ИИ через психологически обоснованные подходы, которые снижают сопротивление и способствуют принятию.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-title">Организационный дизайн</h3>
+                    <p class="service-description">
+                        Проектирование организационных структур, которые раскрывают человеческий потенциал и обеспечивают устойчивую трансформацию.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="contact-title">Готовы к трансформации?</h2>
+            <p class="contact-subtitle">
+                Узнайте, как наш проверенный метод Resonance Method™ оживит вашу трансформацию.
+            </p>
+            <a href="/kontakt" class="contact-button">
+                Запросить бесплатную консультацию
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/">Главная</a>
+                    <a href="/o-nas">О нас</a>
+                    <a href="/services">Услуги</a>
+                    <a href="/metodika">Методика</a>
+                    <a href="/insights">Insights</a>
+                    <a href="/kontakt">Контакты</a>
+                </div>
+                <div class="footer-info">
+                    <p><strong>contraco Россия</strong></p>
+                    <p>Премиальное консультирование по трансформации с 1998 года</p>
+                    <p><strong>Email:</strong> transformation@contraco.ru</p>
+                    <p>&copy; 2025 contraco. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo fallback with retry mechanism
+        (function() {
+            const logo = document.getElementById('site-logo');
+            const logoImg = logo.querySelector('img');
+            let retryCount = 0;
+            const maxRetries = 2;
+            
+            function handleLogoError() {
+                if (retryCount < maxRetries) {
+                    retryCount++;
+                    setTimeout(() => {
+                        logoImg.src = 'https://contraco.net/Logo_rectangle.svg';
+                    }, 1000 * retryCount);
+                } else {
+                    logo.classList.add('logo-failed');
+                }
+            }
+            
+            if (logoImg.complete && logoImg.naturalHeight === 0) {
+                handleLogoError();
+            }
+            
+            logoImg.addEventListener('error', handleLogoError);
+            logoImg.addEventListener('load', function() {
+                logo.classList.remove('logo-failed');
+            });
+        })();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(248, 246, 243, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(248, 246, 243, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
