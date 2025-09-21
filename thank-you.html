@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цифровая трансформация для бизнеса в России | contraco</title>
+    <title>Спасибо за обращение в contraco</title>
     
     <!-- ADDED: Canonical Tag -->
-    <link rel="canonical" href="https://contraco.ru/">
+    <link rel="canonical" href="https://contraco.ru/thank-you.html">
     
-    <!-- ADDED: Robots Meta Tag -->
-    <meta name="robots" content="index, follow">
+    <!-- CRITICAL: Robots Meta Tag - noindex for thank you page -->
+    <meta name="robots" content="noindex, follow">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
@@ -18,22 +18,22 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-868WGCC45D', {
-            page_title: 'Цифровая трансформация для бизнеса в России - contraco',
+            page_title: 'Спасибо за обращение в contraco',
             page_location: window.location.href
         });
     </script>
     
-    <!-- FIXED: Complete hreflang for International SEO -->
-    <link rel="alternate" href="https://contraco.net/" hreflang="x-default" />
-    <link rel="alternate" hreflang="en" href="https://contraco.net/" />
-    <link rel="alternate" hreflang="de" href="https://contraco.de/" />
-    <link rel="alternate" hreflang="ru" href="https://contraco.ru/" />
-    <link rel="alternate" hreflang="ko" href="https://contraco.co.kr/" />
+    <!-- ADDED: Complete hreflang for International SEO -->
+    <link rel="alternate" href="https://contraco.net/thank-you.html" hreflang="x-default" />
+    <link rel="alternate" href="https://contraco.net/thank-you.html" hreflang="en" />
+    <link rel="alternate" href="https://contraco.de/thank-you.html" hreflang="de" />
+    <link rel="alternate" href="https://contraco.ru/thank-you.html" hreflang="ru" />
+    <link rel="alternate" href="https://contraco.co.kr/thank-you.html" hreflang="ko" />
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- REPLACED: Complete Favicon Set -->
+    <!-- ADDED: Complete Favicon Set -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -53,16 +53,16 @@
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#e62d00">
     
-    <!-- FIXED: SEO Meta Tags -->
-    <meta name="description" content="27+ лет опыта в стратегической цифровой трансформации. contraco — экспертиза, проверенные методики и рост для вашего бизнеса.">
-    <meta name="keywords" content="цифровая трансформация, консалтинг трансформации, управление изменениями, организационные изменения, contraco россия">
+    <!-- ADDED: SEO Meta Tags -->
+    <meta name="description" content="Ваше сообщение получено. Старший консультант свяжется с вами в течение 24 часов. Узнайте больше о наших услугах по трансформации.">
+    <meta name="keywords" content="спасибо, консультация, contraco, цифровая трансформация">
     <meta name="author" content="contraco">
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://contraco.ru/">
-    <meta property="og:title" content="Цифровая трансформация для бизнеса в России | contraco">
-    <meta property="og:description" content="27+ лет опыта в стратегической цифровой трансформации. contraco — экспертиза, проверенные методики и рост для вашего бизнеса.">
+    <meta property="og:url" content="https://contraco.ru/thank-you.html">
+    <meta property="og:title" content="Спасибо за обращение в contraco">
+    <meta property="og:description" content="Ваше сообщение получено. Старший консультант свяжется с вами в течение 24 часов. Узнайте больше о наших услугах по трансформации.">
     
     <!-- ADDED: Structured Data -->
     <script type="application/ld+json">
@@ -249,157 +249,139 @@
         /* Main Content */
         .main-content {
             padding-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--soft-white) 0%, var(--warm-gray-lightest) 100%);
+        /* Thank You Section */
+        .thank-you-section {
             padding: 100px 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--warm-gray-lightest) 100%);
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -20%;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(230, 45, 0, 0.02));
-            transform: rotate(-5deg);
-        }
-
-        .hero-title {
-            font-family: var(--font-serif);
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 600;
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
             margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
         }
 
-        .hero-subtitle {
-            font-size: 1.3rem;
+        .thank-you-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 30px;
+            color: var(--deep-charcoal);
+        }
+
+        .thank-you-message {
+            font-size: 1.2rem;
             color: var(--warm-gray-dark);
+            max-width: 600px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+
+        .next-steps {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-small);
             max-width: 800px;
             margin: 0 auto 50px;
-            position: relative;
-            z-index: 2;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--primary-red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--warm-gray-lightest);
+            border-radius: 8px;
+        }
+
+        .step-number {
+            background: var(--primary-red);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: var(--warm-gray-dark);
+            font-size: 0.95rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .cta-button {
             display: inline-block;
-            background: var(--primary-red);
-            color: white;
-            padding: 18px 40px;
+            padding: 15px 30px;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            z-index: 2;
+            box-shadow: var(--shadow-small);
         }
 
-        .cta-button:hover {
+        .cta-button.primary {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .cta-button.primary:hover {
             background: #d63e20;
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
         }
 
-        .cta-button span {
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover span {
-            transform: translateX(3px);
-        }
-
-        /* Stats Section */
-        .stats-section {
+        .cta-button.secondary {
             background: white;
-            padding: 80px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 30px 20px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
             color: var(--primary-red);
-            font-family: var(--font-serif);
-            margin-bottom: 10px;
+            border: 2px solid var(--primary-red);
         }
 
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--warm-gray-dark);
-            font-weight: 500;
-        }
-
-        /* Services Section */
-        .services-section {
-            padding: 100px 0;
-            background: var(--warm-gray-lightest);
-        }
-
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--deep-charcoal);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow-small);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-red);
-        }
-
-        .service-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--deep-charcoal);
-        }
-
-        .service-description {
-            color: var(--warm-gray-dark);
-            line-height: 1.6;
+        .cta-button.secondary:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -458,17 +440,19 @@
                 display: none;
             }
 
-            .hero-title {
-                font-size: 2.5rem;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .next-steps {
+                padding: 30px 20px;
             }
 
             .footer-content {
@@ -499,10 +483,10 @@
                         <li><a href="https://contraco.ru/contact.html" class="nav-link">Контакты</a></li>
                     </ul>
                     <div class="language-switcher">
-                        <a href="https://contraco.net/" class="lang-link">EN</a>
-                        <a href="https://contraco.de/" class="lang-link">DE</a>
-                        <a href="https://contraco.ru/" class="lang-link active">RU</a>
-                        <a href="https://contraco.co.kr/" class="lang-link">KO</a>
+                        <a href="https://contraco.net/thank-you.html" class="lang-link">EN</a>
+                        <a href="https://contraco.de/thank-you.html" class="lang-link">DE</a>
+                        <a href="https://contraco.ru/thank-you.html" class="lang-link active">RU</a>
+                        <a href="https://contraco.co.kr/thank-you.html" class="lang-link">KO</a>
                     </div>
                 </div>
             </div>
@@ -511,86 +495,65 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero-section" id="home">
+        <!-- Thank You Section -->
+        <section class="thank-you-section">
             <div class="container">
-                <h1 class="hero-title">Цифровая трансформация для российского бизнеса</h1>
-                <p class="hero-subtitle">27+ лет опыта в стратегической цифровой трансформации. Экспертиза, проверенные методики и устойчивый рост для вашего бизнеса.</p>
-                <a href="https://contraco.ru/contact.html" class="cta-button">
-                    Начать трансформацию
-                    <span>→</span>
-                </a>
-            </div>
-        </section>
+                <div class="success-icon">✅</div>
+                <h1 class="thank-you-title">Спасибо за ваше обращение!</h1>
+                <p class="thank-you-message">
+                    Мы получили ваш запрос и ценим ваш интерес к услугам contraco. 
+                    Наша команда экспертов уже работает над вашим обращением.
+                </p>
 
-        <!-- Stats Section -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">27+</div>
-                        <div class="stat-label">Лет опыта</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Проектов</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Успешность</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">40+</div>
-                        <div class="stat-label">Стран</div>
-                    </div>
+                <div class="next-steps">
+                    <h3>Что происходит дальше</h3>
+                    <ul class="steps-list">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Анализ вашего запроса</div>
+                                <div class="step-description">
+                                    Наши эксперты изучают ваши задачи и определяют наиболее подходящего консультанта
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Персональный ответ</div>
+                                <div class="step-description">
+                                    Старший консультант свяжется с вами в течение 24 часов для обсуждения деталей
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Предварительная консультация</div>
+                                <div class="step-description">
+                                    Бесплатная 30-минутная консультация для определения оптимального решения
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Индивидуальное предложение</div>
+                                <div class="step-description">
+                                    Разработка персонализированного плана трансформации для вашей компании
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </section>
 
-        <!-- Services Section -->
-        <section class="services-section" id="services">
-            <div class="container">
-                <h2 class="section-title">Наши услуги</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🎯</div>
-                        <h3 class="service-title">Стратегическая трансформация</h3>
-                        <p class="service-description">Комплексное преобразование бизнес-модели с учетом российской специфики</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🤖</div>
-                        <h3 class="service-title">AI-стратегия</h3>
-                        <p class="service-description">Внедрение искусственного интеллекта для повышения эффективности</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">👥</div>
-                        <h3 class="service-title">Управление изменениями</h3>
-                        <p class="service-description">Психологическая поддержка команд в процессе трансформации</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Methodology Section -->
-        <section class="services-section" id="methodology">
-            <div class="container">
-                <h2 class="section-title">Метод Резонанса™</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🧠</div>
-                        <h3 class="service-title">Стратегическая ясность</h3>
-                        <p class="service-description">Четкое понимание целей и пути трансформации</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">⚡</div>
-                        <h3 class="service-title">Технологический интеллект</h3>
-                        <p class="service-description">Правильный выбор и внедрение технологий</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">❤️</div>
-                        <h3 class="service-title">Психологическая глубина</h3>
-                        <p class="service-description">Работа с человеческим фактором изменений</p>
-                    </div>
+                <div class="cta-buttons">
+                    <a href="https://contraco.ru/insights.html" class="cta-button primary">
+                        Читать инсайты
+                    </a>
+                    <a href="https://contraco.ru/about.html" class="cta-button secondary">
+                        Узнать о нас больше
+                    </a>
                 </div>
             </div>
         </section>
