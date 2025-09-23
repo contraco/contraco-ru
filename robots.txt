@@ -1,0 +1,20 @@
+# Robots.txt for contraco.net
+# Generated on August 22, 2025
+
+# Allow all crawlers to access all content
+User-agent: *
+Allow: /
+
+# Block crawlers from common sensitive directories (if they exist)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /.git/
+Disallow: /backup/
+Disallow: /temp/
+Disallow: /tmp/
+
+# XML Sitemap location
+Sitemap: https://www.contraco.ru/sitemap.xml
