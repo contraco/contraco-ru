@@ -27,4 +27,4 @@ Disallow: /temp/
 Disallow: /tmp/
 
 # XML Sitemap location
-Sitemap: https://www.contraco.ru/sitemap.xml
+Sitemap: https://contraco.ru/sitemap.xml

@@ -1,0 +1,231 @@
+name: IndexNow Submit + Smart Sitemap Update
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.html'
+      - '**/*.htm'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DOMAIN: https://contraco.ru
+
+jobs:
+  submit-and-update-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Get changed HTML files (paths -> normalized URLs)
+        id: changed-files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Collect A/M/R changes (use new path for renames)
+          git diff --name-status -M HEAD~1 HEAD \
+          | awk '
+              BEGIN { IGNORECASE=1 }
+              $1 ~ /^A|^M/ && $2 ~ /\.(html|htm)$/ {print $2}
+              $1 ~ /^R/     && $3 ~ /\.(html|htm)$/ {print $3}
+            ' > changed_paths.txt || true
+
+          # Fallback: name-only for modified files
+          git diff --name-only HEAD~1 HEAD \
+            | grep -Ei '\.(html|htm)$' >> changed_paths.txt || true
+
+          # Drop .git and 404 pages; dedupe
+          grep -Ev '^\.git/|/\.git/|(^|/)404\.(html|htm)$' changed_paths.txt 2>/dev/null \
+            | sort -u > changed_paths.clean.txt || true
+
+          # Normalization function (same as sitemap)
+          normalize() {
+            local path="$1"
+            path="${path#./}"
+            local url="${DOMAIN}/${path}"
+            url="${url%/index.html}"
+            url="${url%/index.htm}"
+            if [[ "$path" == "index.html" || "$path" == "index.htm" ]]; then
+              url="${DOMAIN}"
+            fi
+            printf '%s\n' "$url"
+          }
+
+          : > urls_to_submit.txt
+          if [[ -s changed_paths.clean.txt ]]; then
+            while IFS= read -r p; do
+              normalize "$p"
+            done < changed_paths.clean.txt | sort -u > urls_to_submit.txt
+            echo "URLs to submit to IndexNow:"
+            cat urls_to_submit.txt
+            echo "found_files=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No HTML/HTM changes detected."
+            echo "found_files=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq xmlstarlet
+
+      - name: Generate smart sitemap.xml (preserves existing SEO optimization)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          normalize() {
+            local path="$1"
+            path="${path#./}"
+            local url="${DOMAIN}/${path}"
+            url="${url%/index.html}"
+            url="${url%/index.htm}"
+            if [[ "$path" == "index.html" || "$path" == "index.htm" ]]; then
+              url="${DOMAIN}"
+            fi
+            printf '%s\n' "$url"
+          }
+
+          # Function to determine strategic priority and changefreq
+          get_seo_params() {
+            local url="$1"
+            local filename="$2"
+            
+            # Strategic SEO rules based on our optimization
+            case "$url" in
+              "${DOMAIN}" | "${DOMAIN}/")
+                echo "1.0|daily"  # Homepage gets maximum priority
+                ;;
+              */about.html | */contact.html | */insights.html)
+                echo "0.9|weekly"  # Main pages
+                ;;
+              */thank-you.html | */thankyou.html | */copyright.html)
+                echo "0.5|monthly"  # Utility pages
+                ;;
+              */yandex_*.html | */google*.html | *verification*.html)
+                echo "0.1|yearly"  # Verification files
+                ;;
+              */ai-*.html | */digital-*.html | */organizational-*.html | */leading-*.html | */pricing-*.html | */resonance-*.html | */strategic-*.html | */cultural-*.html)
+                echo "0.8|weekly"  # Content pages
+                ;;
+              *)
+                echo "0.8|weekly"  # Default for other pages
+                ;;
+            esac
+          }
+
+          echo "Generating smart sitemap.xml with SEO optimization preservation..."
+          
+          # Read existing sitemap if it exists to preserve manual optimizations
+          declare -A existing_priorities
+          declare -A existing_changefreqs
+          
+          if [[ -f sitemap.xml ]]; then
+            echo "Reading existing sitemap to preserve SEO optimizations..."
+            # Extract existing priorities and changefreqs
+            xmlstarlet sel -N x="http://www.sitemaps.org/schemas/sitemap/0.9" \
+              -t -m "//x:url" \
+              -v "x:loc" -o "|" \
+              -v "x:priority" -o "|" \
+              -v "x:changefreq" -nl \
+              sitemap.xml 2>/dev/null | while IFS='|' read -r loc priority changefreq; do
+                if [[ -n "$loc" && -n "$priority" ]]; then
+                  existing_priorities["$loc"]="$priority"
+                  existing_changefreqs["$loc"]="$changefreq"
+                fi
+              done || true
+          fi
+
+          : > sitemap.xml
+          printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>' >> sitemap.xml
+          printf '%s\n' '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+
+          # Find all html/htm files, exclude .git and 404 pages
+          find . \( -name "*.html" -o -name "*.htm" \) \
+            -not -path "./.git/*" \
+            -not -name "404.html" \
+            -not -name "404.htm" \
+            -not -name "*template*.html" \
+            -not -name "css_base_styles.html" \
+          | sort | while read -r file; do
+              url="$(normalize "$file")"
+              lastmod="$(date -r "$file" +"%Y-%m-%d" 2>/dev/null || stat -c %y "$file" | cut -d' ' -f1)"
+              
+              # Use existing priority/changefreq if available, otherwise use strategic defaults
+              if [[ -n "${existing_priorities[$url]:-}" ]]; then
+                priority="${existing_priorities[$url]}"
+                changefreq="${existing_changefreqs[$url]:-weekly}"
+                echo "Preserving existing SEO: $url (priority: $priority, changefreq: $changefreq)"
+              else
+                seo_params="$(get_seo_params "$url" "$file")"
+                priority="${seo_params%|*}"
+                changefreq="${seo_params#*|}"
+                echo "Applying strategic SEO: $url (priority: $priority, changefreq: $changefreq)"
+              fi
+              
+              {
+                printf '  <url>\n'
+                printf '    <loc>%s</loc>\n' "$url"
+                printf '    <lastmod>%s</lastmod>\n' "$lastmod"
+                printf '    <changefreq>%s</changefreq>\n' "$changefreq"
+                printf '    <priority>%s</priority>\n' "$priority"
+                printf '  </url>\n'
+              } >> sitemap.xml
+            done
+
+          printf '%s\n' '</urlset>' >> sitemap.xml
+          echo "✅ Generated smart sitemap with $(grep -c '<url>' sitemap.xml) URLs"
+          echo "✅ SEO optimizations preserved and applied strategically"
+
+      - name: Submit to IndexNow
+        if: steps.changed-files.outputs.found_files == 'true'
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -s urls_to_submit.txt ]]; then
+            urls_json=$(jq -R -s -c 'split("\n")[:-1]' urls_to_submit.txt)
+            echo "Submitting to IndexNow API..."
+            response=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "host": "contraco.ru",
+                "key": "'"${INDEXNOW_KEY}"'",
+                "keyLocation": "https://contraco.ru/'"${INDEXNOW_KEY}"'.txt",
+                "urlList": '"$urls_json"'
+              }')
+            http_code=$(echo "$response" | awk -F: '/HTTP_CODE:/ {print $2}')
+            if [[ "$http_code" == "200" || "$http_code" == "202" ]]; then
+              echo "✅ Successfully submitted $(wc -l < urls_to_submit.txt) URLs to IndexNow"
+            else
+              echo "❌ Failed to submit URLs. HTTP Status: $http_code"
+              echo "$response"
+              exit 1
+            fi
+          fi
+
+      - name: Commit and push sitemap.xml
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions[bot]"
+          git add sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes to sitemap.xml"
+            exit 0
+          fi
+          git commit -m "Auto-update sitemap.xml with SEO optimization preserved"
+          # Ensure no conflicting auth header from checkout
+          git config --local --unset-all http.https://github.com/.extraheader || true
+          # Push with PAT
+          git push "https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
