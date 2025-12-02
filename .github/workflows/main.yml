@@ -102,6 +102,7 @@ jobs:
             -not -path "./.git/*" \
             -not -name "404.html" \
             -not -name "404.htm" \
+            -not -name "yandex_*.html" \
           | sort \
           | while read -r file; do
               url="$(normalize "$file")"
