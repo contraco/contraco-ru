@@ -6,7 +6,7 @@ User-agent: *
 Allow: /
 
 User-agent: Googlebot
-Disallow: /yandex_aeacfa9e17557ac0.html
+Disallow: /yandex_6df8be02293d6328.html
 
 User-agent: Yandex
 Allow: /yandex_6df8be02293d6328.html
