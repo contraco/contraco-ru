@@ -413,6 +413,18 @@
             box-shadow: var(--shadow-medium);
         }
 
+        .form-privacy-notice {
+            font-size: 0.82rem;
+            color: var(--warm-gray-dark);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .form-privacy-notice a {
+            color: var(--primary-red);
+            text-decoration: underline;
+        }
+
         .form-button:disabled {
             background: var(--warm-gray-medium);
             cursor: not-allowed;
@@ -628,6 +640,8 @@
                                 <label for="message" class="form-label">Сообщение *</label>
                                 <textarea id="message" name="message" class="form-textarea" placeholder="Расскажите о ваших задачах и целях трансформации..." required></textarea>
                             </div>
+
+                            <p class="form-privacy-notice">Отправляя эту форму, вы подтверждаете ознакомление с нашей <a href="/privacy-statement.html">Политикой конфиденциальности</a>, включая правовое основание, сроки хранения данных, а также ваши права на доступ и удаление данных.</p>
 
                             <button type="submit" class="form-button" id="submitBtn">
                                 Отправить запрос
