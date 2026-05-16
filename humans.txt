@@ -1,0 +1,18 @@
+/* TEAM */
+Founder & CEO: Frank Meltke
+Site: meltke.com
+Wikidata: Q139680598
+LinkedIn: linkedin.com/in/frankmeltke
+Location: Missouri, USA
+
+/* THANKS */
+Kyung Hee University, Seoul — academic partnership
+HTWK Leipzig — research partnership
+BBC Global Minds — global insight network
+i-COM Global — data & marketing standards
+
+/* SITE */
+Last update: 2026/05/16
+Language: Русский
+Standards: HTML5, Schema.org, JSON-LD
+Software: Static HTML, GitHub Pages
