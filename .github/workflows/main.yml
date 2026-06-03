@@ -55,7 +55,7 @@ jobs:
             url="${url%/index.html}"
             url="${url%/index.htm}"
             if [[ "$path" == "index.html" || "$path" == "index.htm" ]]; then
-              url="${DOMAIN}"
+              url="${DOMAIN}/"
             fi
             printf '%s\n' "$url"
           }
@@ -87,7 +87,7 @@ jobs:
             url="${url%/index.html}"
             url="${url%/index.htm}"
             if [[ "$path" == "index.html" || "$path" == "index.htm" ]]; then
-              url="${DOMAIN}"
+              url="${DOMAIN}/"
             fi
             printf '%s\n' "$url"
           }
