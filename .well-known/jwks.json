@@ -1,0 +1,13 @@
+{
+  "keys": [
+    {
+      "kty": "EC",
+      "crv": "P-256",
+      "kid": "contraco-entity-2026",
+      "use": "sig",
+      "alg": "ES256",
+      "x": "JR2aHfEkSAUBO3rpZIKpFrmJD5AcL-bOxiUlYUXW2tw",
+      "y": "R93PmJrpbQwTg3Tsi2YhcYDjsJxBVOwnHXj6xvX-hY8"
+    }
+  ]
+}
