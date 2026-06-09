@@ -1,6 +1,6 @@
 {
-    "name": "Contraco",
-    "short_name": "Contraco",
+    "name": "contraco",
+    "short_name": "contraco",
     "icons": [
         {
             "src": "/favicon-16x16.png",
@@ -18,47 +18,47 @@
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-57x57.png",
+            "src": "/apple-touch-icon-57x57.png",
             "sizes": "57x57",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-60x60.png",
+            "src": "/apple-touch-icon-60x60.png",
             "sizes": "60x60",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-72x72.png",
+            "src": "/apple-touch-icon-72x72.png",
             "sizes": "72x72",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-76x76.png",
+            "src": "/apple-touch-icon-76x76.png",
             "sizes": "76x76",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-114x114.png",
+            "src": "/apple-touch-icon-114x114.png",
             "sizes": "114x114",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-120x120.png",
+            "src": "/apple-touch-icon-120x120.png",
             "sizes": "120x120",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-144x144.png",
+            "src": "/apple-touch-icon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-152x152.png",
+            "src": "/apple-touch-icon-152x152.png",
             "sizes": "152x152",
             "type": "image/png"
         },
         {
-            "src": "/apple-icon-180x180.png",
+            "src": "/apple-touch-icon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
