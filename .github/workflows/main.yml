@@ -153,6 +153,59 @@ jobs:
             fi
           fi
 
+      - name: Submit to Google Indexing API
+        if: steps.changed-files.outputs.found_files == 'true'
+        env:
+          GOOGLE_INDEXING_SA_KEY: ${{ secrets.GOOGLE_INDEXING_SA_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -s urls_to_submit.txt ]]; then
+            echo "$GOOGLE_INDEXING_SA_KEY" > /tmp/sa_key.json
+            pip install --quiet google-auth requests 2>/dev/null || true
+            python3 - <<'PYEOF'
+import json, sys, os
+import google.auth
+import google.auth.transport.requests
+from google.oauth2 import service_account
+
+KEY_FILE = "/tmp/sa_key.json"
+SCOPES = ["https://www.googleapis.com/auth/indexing"]
+
+creds = service_account.Credentials.from_service_account_file(KEY_FILE, scopes=SCOPES)
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+token = creds.token
+
+with open("urls_to_submit.txt") as f:
+    urls = [u.strip() for u in f if u.strip()]
+
+import urllib.request
+success = 0
+fail = 0
+for url in urls:
+    body = json.dumps({"url": url, "type": "URL_UPDATED"}).encode()
+    req = urllib.request.Request(
+        "https://indexing.googleapis.com/v3/urlNotifications:publish",
+        data=body,
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req) as resp:
+            print(f"✅ {url} — {resp.status}")
+            success += 1
+    except Exception as e:
+        print(f"❌ {url} — {e}")
+        fail += 1
+
+print(f"\nGoogle Indexing API: {success} submitted, {fail} failed")
+if fail > 0:
+    sys.exit(1)
+PYEOF
+            rm -f /tmp/sa_key.json
+          fi
+
       - name: Commit and push sitemap.xml (use origin + GITHUB_TOKEN)
         shell: bash
         run: |
