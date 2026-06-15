@@ -162,48 +162,33 @@ jobs:
           set -euo pipefail
           if [[ -s urls_to_submit.txt ]]; then
             echo "$GOOGLE_INDEXING_SA_KEY" > /tmp/sa_key.json
-            pip install --quiet google-auth requests 2>/dev/null || true
-            python3 - <<'PYEOF'
-import json, sys, os
-import google.auth
+            pip install --quiet google-auth 2>/dev/null || true
+            cat > /tmp/gindex.py << 'ENDOFSCRIPT'
+import json, sys, urllib.request
 import google.auth.transport.requests
 from google.oauth2 import service_account
-
-KEY_FILE = "/tmp/sa_key.json"
-SCOPES = ["https://www.googleapis.com/auth/indexing"]
-
-creds = service_account.Credentials.from_service_account_file(KEY_FILE, scopes=SCOPES)
-auth_req = google.auth.transport.requests.Request()
-creds.refresh(auth_req)
-token = creds.token
-
-with open("urls_to_submit.txt") as f:
-    urls = [u.strip() for u in f if u.strip()]
-
-import urllib.request
-success = 0
-fail = 0
+creds = service_account.Credentials.from_service_account_file(
+    "/tmp/sa_key.json", scopes=["https://www.googleapis.com/auth/indexing"])
+creds.refresh(google.auth.transport.requests.Request())
+urls = [u.strip() for u in open("urls_to_submit.txt") if u.strip()]
+ok, fail = 0, 0
 for url in urls:
     body = json.dumps({"url": url, "type": "URL_UPDATED"}).encode()
     req = urllib.request.Request(
         "https://indexing.googleapis.com/v3/urlNotifications:publish",
         data=body,
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-        method="POST"
-    )
+        headers={"Authorization": "Bearer " + creds.token, "Content-Type": "application/json"},
+        method="POST")
     try:
-        with urllib.request.urlopen(req) as resp:
-            print(f"OK {url} - {resp.status}")
-            success += 1
+        with urllib.request.urlopen(req) as r:
+            print("OK", url, r.status); ok += 1
     except Exception as e:
-        print(f"FAIL {url} - {e}")
-        fail += 1
-
-print(f"\nGoogle Indexing API: {success} submitted, {fail} failed")
-if fail > 0:
-    sys.exit(1)
-PYEOF
-            rm -f /tmp/sa_key.json
+        print("FAIL", url, e); fail += 1
+print("Google Indexing API:", ok, "submitted,", fail, "failed")
+sys.exit(1 if fail > 0 else 0)
+ENDOFSCRIPT
+            python3 /tmp/gindex.py
+            rm -f /tmp/sa_key.json /tmp/gindex.py
           fi
 
       - name: Commit and push sitemap.xml (use origin + GITHUB_TOKEN)
