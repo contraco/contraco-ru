@@ -31,16 +31,21 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Collect A/M/R changes (use new path for renames)
-          git diff --name-status -M HEAD~1 HEAD \
+          BEFORE="${{ github.event.before }}"
+          if git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            BASE="$BEFORE"
+          else
+            BASE="HEAD~1"
+          fi
+
+          git diff --name-status -M "${BASE}" HEAD \
           | awk '
             BEGIN { IGNORECASE=1 }
             $1 ~ /^(A|M)$/ && $2 ~ /\.(html|htm)$/ {print $2}
             $1 ~ /^R/        && $3 ~ /\.(html|htm)$/ {print $3}
           ' > changed_paths.txt || true
 
-          # Fallback: name-only for modified files
-          git diff --name-only HEAD~1 HEAD \
+          git diff --name-only "${BASE}" HEAD \
           | grep -Ei '\\.(html|htm)$' >> changed_paths.txt || true
 
           # Drop .git and 404 pages; dedupe
