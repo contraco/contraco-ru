@@ -193,10 +193,10 @@ for url in urls:
     )
     try:
         with urllib.request.urlopen(req) as resp:
-            print(f"✅ {url} — {resp.status}")
+            print(f"OK {url} - {resp.status}")
             success += 1
     except Exception as e:
-        print(f"❌ {url} — {e}")
+        print(f"FAIL {url} - {e}")
         fail += 1
 
 print(f"\nGoogle Indexing API: {success} submitted, {fail} failed")
@@ -219,4 +219,4 @@ PYEOF
           fi
           git commit -m "Auto-update sitemap.xml"
           # DO NOT unset the extraheader here; it carries the token from checkout
-          git push origin HEAD:${GITHUB_REF_NAME:-${{ github.ref_name }}}
+          git push origin HEAD:${GITHUB_REF_NAME:-main}
