@@ -163,30 +163,7 @@ jobs:
           if [[ -s urls_to_submit.txt ]]; then
             echo "$GOOGLE_INDEXING_SA_KEY" > /tmp/sa_key.json
             pip install --quiet google-auth 2>/dev/null || true
-            cat > /tmp/gindex.py << 'ENDOFSCRIPT'
-import json, sys, urllib.request
-import google.auth.transport.requests
-from google.oauth2 import service_account
-creds = service_account.Credentials.from_service_account_file(
-    "/tmp/sa_key.json", scopes=["https://www.googleapis.com/auth/indexing"])
-creds.refresh(google.auth.transport.requests.Request())
-urls = [u.strip() for u in open("urls_to_submit.txt") if u.strip()]
-ok, fail = 0, 0
-for url in urls:
-    body = json.dumps({"url": url, "type": "URL_UPDATED"}).encode()
-    req = urllib.request.Request(
-        "https://indexing.googleapis.com/v3/urlNotifications:publish",
-        data=body,
-        headers={"Authorization": "Bearer " + creds.token, "Content-Type": "application/json"},
-        method="POST")
-    try:
-        with urllib.request.urlopen(req) as r:
-            print("OK", url, r.status); ok += 1
-    except Exception as e:
-        print("FAIL", url, e); fail += 1
-print("Google Indexing API:", ok, "submitted,", fail, "failed")
-sys.exit(1 if fail > 0 else 0)
-ENDOFSCRIPT
+            echo "aW1wb3J0IGpzb24sIHN5cywgdXJsbGliLnJlcXVlc3QKaW1wb3J0IGdvb2dsZS5hdXRoLnRyYW5zcG9ydC5yZXF1ZXN0cwpmcm9tIGdvb2dsZS5vYXV0aDIgaW1wb3J0IHNlcnZpY2VfYWNjb3VudApjcmVkcyA9IHNlcnZpY2VfYWNjb3VudC5DcmVkZW50aWFscy5mcm9tX3NlcnZpY2VfYWNjb3VudF9maWxlKAogICAgIi90bXAvc2Ffa2V5Lmpzb24iLCBzY29wZXM9WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2luZGV4aW5nIl0pCmNyZWRzLnJlZnJlc2goZ29vZ2xlLmF1dGgudHJhbnNwb3J0LnJlcXVlc3RzLlJlcXVlc3QoKSkKdXJscyA9IFt1LnN0cmlwKCkgZm9yIHUgaW4gb3BlbigidXJsc190b19zdWJtaXQudHh0IikgaWYgdS5zdHJpcCgpXQpvaywgZmFpbCA9IDAsIDAKZm9yIHVybCBpbiB1cmxzOgogICAgYm9keSA9IGpzb24uZHVtcHMoeyJ1cmwiOiB1cmwsICJ0eXBlIjogIlVSTF9VUERBVEVEIn0pLmVuY29kZSgpCiAgICByZXEgPSB1cmxsaWIucmVxdWVzdC5SZXF1ZXN0KAogICAgICAgICJodHRwczovL2luZGV4aW5nLmdvb2dsZWFwaXMuY29tL3YzL3VybE5vdGlmaWNhdGlvbnM6cHVibGlzaCIsCiAgICAgICAgZGF0YT1ib2R5LAogICAgICAgIGhlYWRlcnM9eyJBdXRob3JpemF0aW9uIjogIkJlYXJlciAiICsgY3JlZHMudG9rZW4sICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiJ9LAogICAgICAgIG1ldGhvZD0iUE9TVCIpCiAgICB0cnk6CiAgICAgICAgd2l0aCB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSkgYXMgcjoKICAgICAgICAgICAgcHJpbnQoIk9LIiwgdXJsLCByLnN0YXR1cyk7IG9rICs9IDEKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICBwcmludCgiRkFJTCIsIHVybCwgZSk7IGZhaWwgKz0gMQpwcmludCgiR29vZ2xlIEluZGV4aW5nIEFQSToiLCBvaywgInN1Ym1pdHRlZCwiLCBmYWlsLCAiZmFpbGVkIikKc3lzLmV4aXQoMSBpZiBmYWlsID4gMCBlbHNlIDApCg==" | base64 -d > /tmp/gindex.py
             python3 /tmp/gindex.py
             rm -f /tmp/sa_key.json /tmp/gindex.py
           fi
