@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           persist-credentials: true
           # token defaults to ${{ github.token }} which honors permissions above
 
@@ -97,6 +97,20 @@ jobs:
             printf '%s\n' "$url"
           }
 
+          get_priority() {
+            local url="$1"
+            case "$url" in
+              "${DOMAIN}" | "${DOMAIN}/")
+                echo "1.0" ;;
+              */about.html | */contact.html | */insights.html | */press.html)
+                echo "0.9" ;;
+              */thank-you.html | */privacy-statement.html | */copyright.html)
+                echo "0.5" ;;
+              *)
+                echo "0.8" ;;
+            esac
+          }
+
           echo "Generating sitemap.xml..."
           : > sitemap.xml
           printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>' >> sitemap.xml
@@ -112,13 +126,14 @@ jobs:
           | while read -r file; do
               url="$(normalize "$file")"
               # lastmod portable: prefer date -r, fallback to stat
-              lastmod="$(date -r "$file" +"%Y-%m-%d" 2>/dev/null || stat -c %y "$file" | cut -d' ' -f1)"
+              lastmod="$(git log -1 --format="%ci" -- "$file" 2>/dev/null | cut -d' ' -f1)"
+              lastmod="${lastmod:-$(date +"%Y-%m-%d")}"
               {
                 printf '  <url>\n'
                 printf '    <loc>%s</loc>\n' "$url"
                 printf '    <lastmod>%s</lastmod>\n' "$lastmod"
                 printf '    <changefreq>weekly</changefreq>\n'
-                printf '    <priority>0.8</priority>\n'
+                printf '    <priority>%s</priority>\n' "$(get_priority "$url")"
                 printf '  </url>\n'
               } >> sitemap.xml
             done
