@@ -66,15 +66,15 @@
     <meta name="theme-color" content="#C00000">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Master strategic vendor selection with frameworks that go beyond price comparison. Learn total cost of ownership, risk mitigation, and partnership strategies that prevent costly mistakes.">
-    <meta name="keywords" content="vendor selection, technology procurement, RFP strategy, vendor management, CIO strategy, due diligence, total cost ownership, contraco">
+    <meta name="description" content="Стратегический выбор поставщиков, совокупная стоимость владения, снижение рисков и партнерские стратегии, предотвращающие дорогостоящие ошибки.">
+    <meta name="keywords" content="выбор поставщиков, закупка технологий, стратегия RFP, управление поставщиками, стратегия CIO, дью-дилидженс, совокупная стоимость владения, contraco">
     <meta name="author" content="contraco">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://contraco.ru/vendor-selection-mastery.html">
-    <meta property="og:title" content="Vendor Selection Mastery: The Strategic Framework for Technology Partnerships">
-    <meta property="og:description" content="Strategic frameworks for technology vendor selection that go beyond price. How poor vendor selection cost one F500 company $47M and how to avoid the same mistakes.">
+    <meta property="og:title" content="Мастерство выбора поставщиков: Стратегический фреймворк для технологических партнерств">
+    <meta property="og:description" content="Стратегические фреймворки выбора технологических поставщиков. Как неудачный выбор обошелся компании из F500 в $47 млн и как избежать тех же ошибок.">
     <meta property="og:image" content="https://contraco.ru/contraco_4K.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -82,8 +82,8 @@
  <meta property="og:logo" content="https://contraco.ru/Logo_rectangle.svg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vendor Selection Mastery: The Strategic Framework for Technology Partnerships">
-    <meta name="twitter:description" content="Strategic frameworks for technology vendor selection that go beyond price. How poor vendor selection cost one F500 company $47M and how to avoid the same mistakes.">
+    <meta name="twitter:title" content="Мастерство выбора поставщиков: Стратегический фреймворк для технологических партнерств">
+    <meta name="twitter:description" content="Стратегические фреймворки выбора технологических поставщиков. Как неудачный выбор обошелся компании из F500 в $47 млн и как избежать тех же ошибок.">
     <meta name="twitter:image" content="https://contraco.ru/contraco_4K.png">
     
     <!-- Structured Data -->
@@ -111,7 +111,12 @@
         "addressCountry": "US"
     },
     "foundingDate": "1998",
-    "founder": { "@id": "https://meltke.com/#person" },
+    "founder": {
+        "@type": "Person",
+        "@id": "https://meltke.com/#person",
+        "name": "Frank Meltke",
+        "url": "https://meltke.com"
+    },
     "areaServed": "Global",
     "sameAs": [
         "https://www.wikidata.org/wiki/Q139681815",
@@ -1002,7 +1007,12 @@
     "url": "https://contraco.ru/vendor-selection-mastery.html",
     "name": "Мастерство выбора поставщиков: Стратегический фреймворк",
     "dateModified": "2026-08-28",
-    "isPartOf": { "@id": "https://contraco.ru/" }
+    "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://contraco.ru/#website",
+        "name": "contraco",
+        "url": "https://contraco.ru/"
+    }
 }
 </script>
 </head>
@@ -1583,7 +1593,7 @@
                 if (retryCount < maxRetries) {
                     retryCount++;
                     setTimeout(() => {
-                        logoImg.src = 'https://contraco.net/Logo_rectangle.svg';
+                        logoImg.src = 'https://contraco.ru/Logo_rectangle.svg';
                     }, 1000 * retryCount);
                 } else {
                     logo.classList.add('logo-failed');
