@@ -4,15 +4,6 @@
 # Allow all crawlers to access all content
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /cgi-bin/
-Disallow: /.git/
-Disallow: /backup/
-Disallow: /temp/
-Disallow: /tmp/
 
 User-agent: Googlebot
 Disallow: /yandex_6df8be02293d6328.html
@@ -38,7 +29,7 @@ User-agent: GPTBot
 Disallow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: CCBot
 Disallow: /
