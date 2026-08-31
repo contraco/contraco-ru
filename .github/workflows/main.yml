@@ -141,12 +141,71 @@ jobs:
           printf '%s\n' '</urlset>' >> sitemap.xml
           echo "Generated sitemap with $(grep -c '<url>' sitemap.xml) URLs"
 
+      - name: Regenerate llms.txt page list
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          START='<!-- AUTO-PAGES:START -->'
+          END='<!-- AUTO-PAGES:END -->'
+
+          if [[ ! -f llms.txt ]]; then
+            echo "llms.txt not present, skipping"
+            exit 0
+          fi
+          if ! grep -qF "$START" llms.txt || ! grep -qF "$END" llms.txt; then
+            echo "llms.txt sentinels not found, leaving file untouched"
+            exit 0
+          fi
+
+          normalize() {
+            local path="$1"
+            path="${path#./}"
+            local url="${DOMAIN}/${path}"
+            url="${url%/index.html}"
+            url="${url%/index.htm}"
+            if [[ "$path" == "index.html" || "$path" == "index.htm" ]]; then
+              url="${DOMAIN}/"
+            fi
+            printf '%s\n' "$url"
+          }
+
+          : > pages_block.txt
+          find . \( -name "*.html" -o -name "*.htm" \) \
+            -not -path "./.git/*" \
+            -not -name "404.html" \
+            -not -name "404.htm" \
+            -not -name "yandex_*.html" \
+            -not -name "thank-you.html" \
+            -not -name "contact.html" \
+          | sort \
+          | while read -r file; do
+              url="$(normalize "$file")"
+              title="$(sed -n 's:.*<title>\(.*\)</title>.*:\1:p' "$file" | head -1)"
+              title="$(printf '%s' "$title" | sed -E 's/[[:space:]]*\|[[:space:]]*(contraco|Frank Meltke|Signal).*$//')"
+              title="$(printf '%s' "$title" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+              if [[ -z "$title" ]]; then
+                title="$(basename "$file" .html)"
+              fi
+              printf -- '- [%s](%s)\n' "$title" "$url" >> pages_block.txt
+            done
+
+          awk -v s="$START" -v e="$END" -v f="pages_block.txt" '
+            $0 == s { print; while ((getline line < f) > 0) print line; skip = 1; next }
+            $0 == e { skip = 0; print; next }
+            !skip   { print }
+          ' llms.txt > llms.txt.new && mv llms.txt.new llms.txt
+
+          rm -f pages_block.txt
+          echo "llms.txt page list regenerated with $(grep -c '^- \[' llms.txt) entries"
+
       - name: Install jq
         if: steps.changed-files.outputs.found_files == 'true'
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Submit to IndexNow
         if: steps.changed-files.outputs.found_files == 'true'
+        continue-on-error: true
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY_CONTRACO_RU }}
         shell: bash
@@ -175,6 +234,7 @@ jobs:
 
       - name: Submit to Google Indexing API
         if: steps.changed-files.outputs.found_files == 'true'
+        continue-on-error: true
         env:
           GOOGLE_INDEXING_SA_KEY: ${{ secrets.GOOGLE_INDEXING_SA_KEY }}
         shell: bash
@@ -194,9 +254,9 @@ jobs:
           set -euo pipefail
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add sitemap.xml
+          git add sitemap.xml llms.txt
           if git diff --staged --quiet; then
-            echo "No changes to sitemap.xml"
+            echo "No changes to sitemap.xml or llms.txt"
             exit 0
           fi
           git commit -m "Auto-update sitemap.xml"
