@@ -183,12 +183,15 @@ jobs:
               url="$(normalize "$file")"
               title="$(sed -n 's:.*<title>\(.*\)</title>.*:\1:p' "$file" | head -1)"
               title="$(printf '%s' "$title" | sed -E 's/[[:space:]]*\|[[:space:]]*(contraco|Frank Meltke|Signal).*$//')"
+              title="$(printf '%s' "$title" | sed -e 's/&nbsp;/ /g' -e 's/&trade;/™/g' -e 's/&#8482;/™/g' -e 's/&quot;/"/g' -e "s/&#0*39;/'/g" -e "s/&apos;/'/g" -e 's/&lt;/</g' -e 's/&gt;/>/g' -e 's/&amp;/\&/g')"
               title="$(printf '%s' "$title" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
               if [[ -z "$title" ]]; then
                 title="$(basename "$file" .html)"
               fi
               printf -- '- [%s](%s)\n' "$title" "$url" >> pages_block.txt
             done
+
+          entries="$(grep -c '^- \[' pages_block.txt || true)"
 
           awk -v s="$START" -v e="$END" -v f="pages_block.txt" '
             $0 == s { print; while ((getline line < f) > 0) print line; skip = 1; next }
@@ -197,7 +200,7 @@ jobs:
           ' llms.txt > llms.txt.new && mv llms.txt.new llms.txt
 
           rm -f pages_block.txt
-          echo "llms.txt page list regenerated with $(grep -c '^- \[' llms.txt) entries"
+          echo "llms.txt page list regenerated with ${entries} entries"
 
       - name: Install jq
         if: steps.changed-files.outputs.found_files == 'true'
