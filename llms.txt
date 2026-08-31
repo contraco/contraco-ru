@@ -21,4 +21,21 @@ contraco публикует материалы на четырёх домена�
 ## Страницы
 
 <!-- AUTO-PAGES:START -->
+- [О компании contraco | 28 лет лидерства в цифровой трансформации](https://contraco.ru/about.html)
+- [Исследование внедрения ИИ | Почему 73% трансформаций неудачны](https://contraco.ru/ai-adoption-research.html)
+- [Фреймворк AI-стратегии для руководителей](https://contraco.ru/ai-strategy-framework.html)
+- [Руководство CFO: ROI цифровой трансформации](https://contraco.ru/cfo-digital-transformation-roi.html)
+- [Авторские права и товарные знаки](https://contraco.ru/copyright.html)
+- [Гид по культурной адаптации | Локализация трансформации](https://contraco.ru/cultural-adaptation-guide.html)
+- [ROI цифровой трансформации | Финансовый и человеческий эффект](https://contraco.ru/digital-transformation-roi.html)
+- [Цифровая трансформация](https://contraco.ru/)
+- [Библиотека инсайтов по трансформации](https://contraco.ru/insights.html)
+- [Лидерство в AI-трансформации | Человеческий фактор изменений](https://contraco.ru/leading-ai-transformation.html)
+- [Организационный дизайн для эпохи ИИ | Опыт contraco](https://contraco.ru/organizational-design-ai.html)
+- [Пресса и СМИ](https://contraco.ru/press.html)
+- [Психология ценообразования для цифровых продуктов](https://contraco.ru/pricing-psychology.html)
+- [Заявление о конфиденциальности](https://contraco.ru/privacy-statement.html)
+- [Метод Резонанса™ | Организационные изменения от contraco](https://contraco.ru/resonance-method.html)
+- [Стратегическая аналитика для AI-трансформации | Insights contraco](https://contraco.ru/strategic-intelligence.html)
+- [Мастерство выбора поставщиков: Стратегический фреймворк](https://contraco.ru/vendor-selection-mastery.html)
 <!-- AUTO-PAGES:END -->
