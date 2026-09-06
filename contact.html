@@ -795,6 +795,21 @@
             }
         });
     </script>
+
+    <script>
+        // Form submission tracking
+        if (typeof gtag !== 'undefined') {
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function() {
+                    gtag('event', 'form_submission', {
+                        event_category: 'Contact Form',
+                        event_label: 'contraco.ru Contact Form - Contact Page'
+                    });
+                });
+            }
+        }
+    </script>
 <script>
   window.goatcounter = { path: function(p) { return location.host + p } }
 </script>
