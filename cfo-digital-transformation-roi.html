@@ -13,17 +13,6 @@
     <!-- Robots Meta Tag -->
     <meta name="robots" content="index, follow">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-868WGCC45D', {
-            page_title: 'Руководство CFO по ROI цифровой трансформации - contraco',
-            page_location: window.location.href
-        });
-    </script>
     
     <!-- Complete hreflang for International SEO -->
     <link rel="alternate" href="https://contraco.com/" hreflang="x-default" />
@@ -972,7 +961,7 @@
     "@type": "WebPage",
     "url": "https://contraco.ru/cfo-digital-transformation-roi.html",
     "name": "Руководство CFO: ROI цифровой трансформации",
-    "dateModified": "2026-09-01",
+    "dateModified": "2026-09-07",
     "isPartOf": {
         "@type": "WebSite",
         "@id": "https://contraco.ru/#website",
@@ -1483,18 +1472,6 @@
             });
         });
 
-        // Analytics tracking
-        if (typeof gtag !== 'undefined') {
-            document.querySelectorAll('.cta-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    gtag('event', 'cta_click', {
-                        event_category: 'CFO ROI Guide',
-                        event_label: button.textContent.trim()
-                    });
-                });
-            });
-        }
-
         // Animate cards on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -1517,10 +1494,5 @@
             observer.observe(card);
         });
     </script>
-<script>
-  window.goatcounter = { path: function(p) { return location.host + p } }
-</script>
-<script data-goatcounter="https://contraco.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

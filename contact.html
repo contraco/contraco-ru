@@ -11,17 +11,6 @@
     <!-- FIXED: Robots Meta Tag - noindex for contact page -->
     <meta name="robots" content="noindex, follow">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-868WGCC45D', {
-            page_title: 'Контакты contraco | Начните трансформацию бизнеса',
-            page_location: window.location.href
-        });
-    </script>
     
     <!-- ADDED: Complete hreflang for International SEO -->
 
@@ -657,43 +646,11 @@
 
                     <div class="contact-form">
                         <h3 class="form-title">Запросить консультацию</h3>
-                        <form id="contactForm" action="https://formsubmit.co/transformation@contraco.net" method="POST">
-                            <!-- FormSubmit Configuration -->
-                            <input type="hidden" name="_subject" value="Новый запрос с сайта contraco.ru">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_template" value="table">
-
-                            <div class="form-group">
-                                <label for="name" class="form-label">Имя *</label>
-                                <input type="text" id="name" name="name" class="form-input" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email *</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="company" class="form-label">Компания</label>
-                                <input type="text" id="company" name="company" class="form-input">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Телефон</label>
-                                <input type="tel" id="phone" name="phone" class="form-input">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message" class="form-label">Сообщение *</label>
-                                <textarea id="message" name="message" class="form-textarea" placeholder="Расскажите о ваших задачах и целях трансформации..." required></textarea>
-                            </div>
-
-                            <p class="form-privacy-notice">Отправляя эту форму, вы подтверждаете ознакомление с нашей <a href="/privacy-statement.html">Политикой конфиденциальности</a>, включая правовое основание, сроки хранения данных, а также ваши права на доступ и удаление данных.</p>
-
-                            <button type="submit" class="form-button" id="submitBtn">
-                                Отправить запрос
-                            </button>
-                        </form>
+                        <div class="contact-direct">
+                            <p><strong>Электронная почта:</strong> <a href="mailto:transformation@contraco.net">transformation@contraco.net</a></p>
+                            <p><strong>Телефон:</strong> <a href="tel:+13129400326">+1 (312) 940-0326</a></p>
+                            <p><strong>Почтовый адрес:</strong><br>contraco<br>1209 10th Ln.<br>Ava, MO 65608<br>США</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -796,24 +753,5 @@
         });
     </script>
 
-    <script>
-        // Form submission tracking
-        if (typeof gtag !== 'undefined') {
-            const contactForm = document.querySelector('form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function() {
-                    gtag('event', 'form_submission', {
-                        event_category: 'Contact Form',
-                        event_label: 'contraco.ru Contact Form - Contact Page'
-                    });
-                });
-            }
-        }
-    </script>
-<script>
-  window.goatcounter = { path: function(p) { return location.host + p } }
-</script>
-<script data-goatcounter="https://contraco.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
