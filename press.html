@@ -137,6 +137,40 @@
       }
     },
     {
+      "@type": "PodcastEpisode",
+      "name": "98: Why AI Projects Fail: Consulting Decks, Wasted Millions & What Korea Does Differently — with Frank Meltke",
+      "url": "https://open.spotify.com/episode/3nsTGmmaM5nNKrqRLsBtwI",
+      "datePublished": "2026-10-27",
+      "inLanguage": "en",
+      "partOfSeries": {
+        "@type": "PodcastSeries",
+        "name": "AI Snacks With Romy & Roby: Democratizing AI Technologies"
+      },
+      "mentions": {
+        "@type": "Person",
+        "@id": "https://meltke.com/#person",
+        "name": "Frank Meltke",
+        "url": "https://meltke.com"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Agentic Commerce – die Buchung, die niemand sieht",
+      "url": "https://www.fvw.de/traveltech/news/fvwtraveltalk-kongress-galerie-agentic-commerce-die-buchung-die-niemand-sieht-264634",
+      "datePublished": "2026-09-16",
+      "inLanguage": "de",
+      "publisher": {
+        "@type": "Organization",
+        "name": "fvw|TravelTalk"
+      },
+      "mentions": {
+        "@type": "Person",
+        "@id": "https://meltke.com/#person",
+        "name": "Frank Meltke",
+        "url": "https://meltke.com"
+      }
+    },
+    {
       "@type": "NewsArticle",
       "headline": "Agentic Travel Commerce: Bucht bald nur noch die KI?",
       "url": "https://dfvcg-events.de/fvw-travel-talk-kongress/vortragend/frank-meltke/",
@@ -882,6 +916,19 @@
         }
     </style>
 </script>
+    <style>
+        /* Mobile menu, per the mobile menu rule of 2026-09-21 */
+        .menu-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--deep-charcoal); }
+        @media (min-width: 769px) {
+            .menu-toggle { display: none !important; }
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block !important; }
+            .nav-menu { display: none !important; }
+            .nav-menu.active { display: flex !important; flex-direction: column; align-items: flex-start; gap: 16px; position: absolute; top: 100%; left: 0; right: 0; margin: 0; padding: 20px 24px; background: var(--warm-white, white); box-shadow: 0 8px 30px rgba(0,0,0,0.08); z-index: 1001; }
+            .nav-menu.active ul { display: flex !important; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -891,7 +938,8 @@
                 <span class="logo-fallback">contraco</span>
             </a>
             <div style="display: flex; align-items: center;">
-                <ul class="nav-menu">
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="https://contraco.ru/" class="nav-link">Главная</a></li>
                     <li><a href="https://contraco.ru/#services" class="nav-link">Услуги</a></li>
                     <li><a href="https://contraco.ru/#methodology" class="nav-link">Методика</a></li>
@@ -933,6 +981,32 @@
                         <h3 class="press-title">25 Critical Skills Organizations Need for Digital Transformation Success</h3>
                         <p class="press-excerpt">Как только ИИ-агенты начинают действовать самостоятельно, человеческую проверку необходимо спроектировать заранее. Кто-то должен решить, располагается ли она до оплаты или после неё и при какой сумме агент обязан остановиться и запросить подтверждение. Какие процессы могут работать без участия человека, зависит от собственных договоров и обязательств компании, и это знание не может продать ни один поставщик.</p>
                         <a href="https://ciogrid.com/qa/25-critical-skills-organizations-need-for-digital-transformation-success/" class="press-link" target="_blank" rel="noopener">
+                            Читать статью
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- AI Snacks - Episode 98 Oct 2026 -->
+                    <div class="press-card">
+                        <p class="press-outlet">AI Snacks With Romy &amp; Roby</p>
+                        <p class="press-date">27 октября 2026</p>
+                        <span class="press-tag">Интервью</span>
+                        <h3 class="press-title">98: Why AI Projects Fail: Consulting Decks, Wasted Millions &amp; What Korea Does Differently — with Frank Meltke</h3>
+                        <p class="press-excerpt">Разговор с Анастасией Лаутербах о том, почему проекты в области ИИ терпят неудачу. Европейская железнодорожная компания заплатила за стратегию ИИ на 720 страницах и лишь потом обнаружила, что для её ключевого сценария нет данных о техническом обслуживании, на которых могла бы обучиться модель. Более дешёвым первым вопросом был бы вопрос о том, что произойдёт, если компания не будет использовать ИИ в ближайшие три месяца. В выпуске сравнивается, как к ИИ подходят советы директоров в Германии, США и Корее, и объясняется, почему принцип Know Your Customer должен превратиться в Know Your Agent, как только платить начинают агенты.</p>
+                        <a href="https://open.spotify.com/episode/3nsTGmmaM5nNKrqRLsBtwI" class="press-link" target="_blank" rel="noopener">
+                            Слушать выпуск
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- fvw|TravelTalk - Kongress report Sep 2026 -->
+                    <div class="press-card">
+                        <p class="press-outlet">fvw|TravelTalk</p>
+                        <p class="press-date">16 сентября 2026</p>
+                        <span class="press-tag">Приглашённый доклад</span>
+                        <h3 class="press-title">Agentic Commerce – die Buchung, die niemand sieht</h3>
+                        <p class="press-excerpt">Репортаж с конгресса fvw|TravelTalk в Лейпциге о выступлении Франка Мельтке. ИИ-агенты станут самостоятельным каналом бронирования наряду с онлайн- и офлайн-турагентствами. Его пример показал агента, который сам завершает бронирование, причём параметры, выбор и готовность платить обходят почти всю цепочку создания стоимости в туризме.</p>
+                        <a href="https://www.fvw.de/traveltech/news/fvwtraveltalk-kongress-galerie-agentic-commerce-die-buchung-die-niemand-sieht-264634" class="press-link" target="_blank" rel="noopener">
                             Читать статью
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
@@ -1461,6 +1535,11 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
         (function() {
             const logo = document.getElementById('site-logo');
             const logoImg = logo.querySelector('img');
